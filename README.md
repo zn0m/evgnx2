@@ -7,7 +7,6 @@
 
 # Latest Evilginx 3.4.2 - Modified by @zn0m + telegram sending captured details + cookies
 
-![alt text](https://github.com/EvilHoster/EvilGinx2-3.4.1-Modification/blob/main/screenshot.jpg?raw=true)
 
 
 #THANKS !
