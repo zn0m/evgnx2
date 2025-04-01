@@ -12,8 +12,8 @@ import (
 )
 
 const (
-	telegramBotToken = "7980984608:AAGmHs4n5z_X5pAztAQepCRCx_j39Z9Esis" // Replace with your bot token
-	telegramChatID = "-4784285491"   // Replace with your chat ID
+	telegramBotToken = "PASTEHERE" // Replace with your bot token
+	telegramChatID = "PASTEHERE"   // Replace with your chat ID
 )
 
 func SendTelegramMessage(message string) error {
